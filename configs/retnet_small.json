@@ -1,0 +1,21 @@
+{
+  "attn_mode": "fused_chunk",
+  "bos_token_id": 1,
+  "eos_token_id": 2,
+  "expand_k": 1,
+  "expand_v": 2,
+  "fuse_cross_entropy": true,
+  "fuse_norm": true,
+  "hidden_act": "swish",
+  "hidden_ratio": 2,
+  "hidden_size": 1024,
+  "max_position_embeddings": 2048,
+  "model_type": "retnet",
+  "num_heads": 4,
+  "num_hidden_layers": 24,
+  "rms_norm_eps": 1e-06,
+  "tie_word_embeddings": true,
+  "transformers_version": "4.37.2",
+  "use_cache": false,
+  "vocab_size": 32000
+}
