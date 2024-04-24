@@ -1,15 +1,10 @@
-<div align="center">
-
-# Flash Linear Attention
-
-[](https://huggingface.co/fla-hub) 
+<div align=center>
+<img src="__assets__/magictime_logo.png" width="150px">
 </div>
+<h2 align="center">MatMul-Free LLM</h2>
+<h5 align="center"> If you like our project, please give us a star ⭐ on GitHub for the latest update.  </h2>
 
-This repo aims at providing a collection of efficient Triton-based implementations for state-of-the-art linear attention models.
-
-<div align="center">
-  <img width="400" alt="image" src="https://github.com/sustcsonglin/flash-linear-attention/assets/18402347/02ff2e26-1495-4088-b701-e72cd65ac6cf">
-</div>
+<h5 align="center">
 
 # Installation
 
