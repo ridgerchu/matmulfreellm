@@ -2,7 +2,7 @@
 
 # Flash Linear Attention
 
-[Hub](https://huggingface.co/fla-hub) | [Discord](https://discord.gg/vDaJTmKNcS)
+[](https://huggingface.co/fla-hub) 
 </div>
 
 This repo aims at providing a collection of efficient Triton-based implementations for state-of-the-art linear attention models.
@@ -165,67 +165,6 @@ All of the pretrained models currently available can be found in [`fla-hub`](htt
 >>> from huggingface_hub import list_models
 >>> for model in list_models(author='fla-hub'): print(model.id)
 ```
-
-# Evaluations
-
-The [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) library allows you to easily perform (zero-shot) model evaluations. 
-Follow the steps below to use this library:
-
-1. Install `lm_eval` following [their instructions](https://github.com/EleutherAI/lm-evaluation-harness/blob/main/README.md). 
-
-2. Run evaluation with:
-```sh
-$ PATH='fla-hub/gla-340M-15B'
-$ python -m evals.harness --model hf \
-    --model_args pretrained=$PATH,dtype=bfloat16 \
-    --tasks wikitext,lambada_openai,piqa,hellaswag,winogrande,arc_easy,arc_challenge,boolq,sciq,copa,openbookqa \
-    --batch_size 64 \
-    --num_fewshot 0 \
-    --device cuda \
-    --show_config                  
-```
-
-We've made `fla` compatible with hf-style evaluations, you can call [evals.harness](evals/harness.py) to finish the evaluations.
-Running the command above will provide the task results reported in the GLA paper.
-
-You may need to install the [extended harness libriary](https://github.com/HazyResearch/based-evaluation-harness) if you'd like to examine the performance of information retrieval on SWDE and FDA (as reported in Based).
-
-> [!Tip]
-> If you are using `lm-evaluation-harness` as an external library and can't find (almost) any tasks available, before calling `lm_eval.evaluate()` or `lm_eval.simple_evaluate()`, simply run the following to load the library's stock tasks!
-```py
->>> from lm_eval.tasks import TaskManager; TaskManager().initialize_tasks()
-```
-
-# Benchmarks
-
-We compared our Triton-based RetNet implementation with CUDA-based FlashAttention2, using a batch size of 8, 32 heads, and a head dimension of 128, across different sequence lengths. 
-These tests were conducted on a single A100 80GB GPU, as illustrated in the following graph
-```py
-# you might have to first install `fla` to enable its import via `pip install -e .`
-$ python benchmark_retention.py
-Performance:
-   seq_len  fused_chunk_fwd  chunk_fwd  parallel_fwd  fused_chunk_fwdbwd  chunk_fwdbwd  parallel_fwdbwd  flash_fwd  flash_fwdbwd
-0    128.0         0.093184   0.185344      0.067584            1.009664      1.591296         1.044480   0.041984      0.282624
-1    256.0         0.165888   0.219136      0.126976            1.024000      1.596928         1.073152   0.074752      0.413696
-2    512.0         0.308224   0.397312      0.265216            1.550336      1.603584         1.301504   0.156672      0.883712
-3   1024.0         0.603136   0.747520      0.706560            3.044864      3.089408         3.529728   0.467968      2.342912
-4   2048.0         1.191424   1.403904      2.141184            6.010880      6.059008        11.009024   1.612800      7.135232
-5   4096.0         2.377728   2.755072      7.392256           11.932672     11.938816        37.792770   5.997568     24.435200
-6   8192.0         4.750336   5.491712     26.402817           23.759359     23.952385       141.014023  22.682114     90.619904
-7  16384.0         9.591296  10.870784    101.262337           47.666176     48.745472       539.853821  91.346947    346.318848
-```
-
-![Performance](https://github.com/sustcsonglin/flash-linear-attention/assets/30831390/36961182-da39-48ba-96a6-84c572ce51d7)
-
-
-# Different forms of linear attention
-
-Please refer to Sectiton 2.3 of [GLA paper](https://arxiv.org/pdf/2312.06635.pdf) for hardware considerations of different forms of linear attention.
-
-* `Parallel`: Self-attention-styled computation in $O(L^2)$ time with sequence parallelism.
-* `FusedRecurrent`: Recurrent computation in $O(L)$ time. Hidden states are computed on-the-fly in shared memory without any materialization to global memory (see Algorithm1 of [this paper](https://arxiv.org/pdf/2006.16236.pdf) for more details!). This saves a lot of I/O cost and should be a strong baseline for speed comparison.
-* `FusedChunk`: Chunkwise computation in $O(LC)$ time where $C$ is the chunk size. Hidden states are computed on-the-fly without any materialization to global memory likewise **FusedRecurrent**. This version is usually better than FusedReuccurent because tensor cores can be used for sequence level "reduction", whilst FusedRecurrent cannot use tensor cores at all.  Note that there is no sequence level parallelism in this implementation, so this impl is not suitable for the very small batch size setting. Should be more memory efficient than ParallelChunk. 
-* `ParallelChunk`: Chunkwise computation with sequence parallelism. Need to materialize hidden states to global memory for each chunk. $C$ is needed to set properly to achieve good performance because when $C$ is small there are too many hidden states to load/store to global memory; and when $C$ is too large the FLOPs are high. Recommened $C$ is [64, 128, 256]
 
 
 # Citation
