@@ -1,5 +1,5 @@
 <div align=center>
-<img src="__assets__/magictime_logo.png" width="150px">
+<img src="__assets__/logo.png" width="150px">
 </div>
 <h2 align="center">MatMul-Free LLM</h2>
 <h5 align="center"> If you like our project, please give us a star ⭐ on GitHub for the latest update.  </h2>
