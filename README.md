@@ -26,6 +26,7 @@ pip install -U git+https://github.com/ridgerchu/matmulfreellm
 
 # Usage
 
+All of the pretrained models currently available can be found in [`huggingface`](https://huggingface.co/collections/ridger/matmulfree-lm-665f4d2b4e4648756e0dd13c).
 ## Model
 
 We provide the implementations of models that are compatible with 🤗 Transformers library. 
@@ -101,11 +102,6 @@ outputs = model.generate(input_ids, max_length=32,  do_sample=True, top_p=0.4, t
 print(tokenizer.batch_decode(outputs, skip_special_tokens=True)[0])
 ```
 
-All of the pretrained models currently available can be found in [`huggingface`](https://huggingface.co/collections/ridger/matmulfree-lm-665f4d2b4e4648756e0dd13c).
-```py
->>> from huggingface_hub import list_models
->>> for model in list_models(author='mmfreelm-hub'): print(model.id)
-```
 
 
 # Citation
