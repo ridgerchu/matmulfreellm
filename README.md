@@ -29,7 +29,6 @@ This is a huggingface-compatible libary that you can use such command to initize
 
 ```py
 >>> from mmfreelm.models import HGRNBitConfig
->>> 
 >>> from transformers import AutoModel
 >>> config = HGRNBitConfig()
 >>> AutoModel.from_config(config)
