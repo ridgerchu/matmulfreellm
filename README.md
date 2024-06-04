@@ -105,18 +105,4 @@ All of the pretrained models currently available can be found in [`huggingface`]
 # Citation
 If you find this repo useful, please consider citing our works:
 ```bib
-@article{yang2023gated,
-  title   = {Gated Linear Attention Transformers with Hardware-Efficient Training},
-  author  = {Yang, Songlin and Wang, Bailin and Shen, Yikang and Panda, Rameswar and Kim, Yoon},
-  journal = {arXiv preprint arXiv:2312.06635},
-  year    = {2023}
-}
-
-@software{yang2024fla,
-  title  = {FLA: A Triton-Based Library for Hardware-Efficient Implementations of Linear Attention Mechanism},
-  author = {Yang, Songlin and Zhang, Yu},
-  url    = {https://github.com/sustcsonglin/flash-linear-attention},
-  month  = jan,
-  year   = {2024}
-}
 ```
