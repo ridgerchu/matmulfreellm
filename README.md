@@ -7,6 +7,8 @@
 
 <h5 align="center">
 
+[![hf_model](https://img.shields.io/badge/🤗-Models-blue.svg)](https://huggingface.co/collections/ridger/matmulfree-lm-665f4d2b4e4648756e0dd13c)
+
 # Introduction
 <div align=center>
 <img src="__assets__/main.png">
@@ -26,7 +28,7 @@ pip install -U git+https://github.com/ridgerchu/matmulfreellm
 
 # Usage
 
-All of the pretrained models currently available can be found in [`huggingface`](https://huggingface.co/collections/ridger/matmulfree-lm-665f4d2b4e4648756e0dd13c).
+All of the pretrained models currently available can be found in [`This huggingface collection`](https://huggingface.co/collections/ridger/matmulfree-lm-665f4d2b4e4648756e0dd13c).
 ## Model
 
 We provide the implementations of models that are compatible with 🤗 Transformers library. 
