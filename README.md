@@ -15,7 +15,7 @@ The following requirements should be satisfied
 - [einops](https://einops.rocks/)
 
 ```sh
-pip install -U git+https://github.com/sustcsonglin/flash-linear-attention
+pip install -U git+https://github.com/ridgerchu/matmulfreellm
 ```
 
 # Usage
