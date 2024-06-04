@@ -14,13 +14,8 @@ The following requirements should be satisfied
 - [Triton](https://github.com/openai/triton) >=2.2
 - [einops](https://einops.rocks/)
 
-\```sh
-pip install -U git+https://github.com/sustcsonglin/flash-linear-attention
-```
-or manage `fla` with submodules
 ```sh
-git submodule add https://github.com/sustcsonglin/flash-linear-attention.git 3rdparty/flash-linear-attention
-ln -s 3rdparty/flash-linear-attention/mmfreelm mmfreelm
+pip install -U git+https://github.com/sustcsonglin/flash-linear-attention
 ```
 
 # Usage
@@ -28,7 +23,7 @@ ln -s 3rdparty/flash-linear-attention/mmfreelm mmfreelm
 ## Model
 
 We provide the implementations of models that are compatible with 🤗 Transformers library. 
-Here's an example of how to initialize a GLA model from the default configs in `fla`:
+Here's an example of how to initialize a GLA model from the default configs in `matmulfreelm`:
 This is a huggingface-compatible libary that you can use such command to initize the model with huggingface `AutoModel`:
 
 
