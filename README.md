@@ -1,5 +1,5 @@
 <div align=center>
-<img src="__assets__/logo.png" width="150px">
+<img src="__assets__/logo.png" width="250px">
 </div>
 <h2 align="center">MatMul-Free LM</h2>
 <h5 align="center"> If you like our project, please give us a star ⭐ on GitHub for the latest update.  </h2>
@@ -7,6 +7,11 @@
 
 <h5 align="center">
 
+# Introduction
+<div align=center>
+<img src="__assets__/main.png">
+</div>
+MatMul-Free LM is a language model architecture that eliminates the need for Matrix Multiplication (MatMul) operations. This repository provides an implementation of MatMul-Free LM that is compatible with the 🤗 Transformers library.
 # Installation
 
 The following requirements should be satisfied 
