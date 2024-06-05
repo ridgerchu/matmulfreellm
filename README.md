@@ -32,7 +32,7 @@ All of the pretrained models currently available can be found in [`This huggingf
 ## Model
 
 We provide the implementations of models that are compatible with 🤗 Transformers library. 
-Here's an example of how to initialize a GLA model from the default configs in `matmulfreelm`:
+Here's an example of how to initialize a model from the default configs in `matmulfreelm`:
 This is a huggingface-compatible libary that you can use such command to initize the model with huggingface `AutoModel`:
 
 
@@ -109,4 +109,10 @@ print(tokenizer.batch_decode(outputs, skip_special_tokens=True)[0])
 # Citation
 If you find this repo useful, please consider citing our works:
 ```bib
+@article{zhu2024scalable,
+title={Scalable MatMul-free Language Modeling},
+author={Zhu, Rui-Jie and Zhang, Yu and Sifferman, Ethan and Sheaves, Tyler and Wang, Yiqiao and Richmond, Dustin and Zhou, Peng and Eshraghian, Jason K},
+journal={arXiv preprint arXiv:2406.02528},
+year={2024}
+}
 ```
