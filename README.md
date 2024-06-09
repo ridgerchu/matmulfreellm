@@ -1,5 +1,5 @@
 <div align=center>
-<img src="__assets__/logo.png" width="250px">
+<img src="__assets__/logo.png" width="200px">
 </div>
 <h2 align="center">MatMul-Free LM</h2>
 <h5 align="center"> If you like our project, please give us a star ⭐ on GitHub for the latest update.  </h2>
@@ -7,8 +7,7 @@
 
 <h5 align="center">
 
-[![hf_model](https://img.shields.io/badge/🤗-Models-blue.svg)](https://huggingface.co/collections/ridger/matmulfree-lm-665f4d2b4e4648756e0dd13c)
-
+[![hf_model](https://img.shields.io/badge/🤗-Models-blue.svg)](https://huggingface.co/collections/ridger/matmulfree-lm-665f4d2b4e4648756e0dd13c) [![arXiv](https://img.shields.io/badge/Arxiv-2406.02528-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2406.02528) 
 # Introduction
 <div align=center>
 <img src="__assets__/main.png">
