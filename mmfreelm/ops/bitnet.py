@@ -156,6 +156,8 @@ class BitLinear(nn.Linear):
         y = F.linear(x_quant, w_quant)
         return y
 
+
+class BitLinear_wonorm_bmm(nn.Linear):
     """
     A custom linear layer that applies quantization on both activations and weights.
     This is primarily for training; kernel optimization is needed for efficiency in deployment.
