@@ -32,9 +32,9 @@ pip install -U git+https://github.com/ridgerchu/matmulfreellm
 ```
 
 # Usage
-## Model Zoo
+## Pre-trained Model Zoo
 | Model Size     | Layer | Hidden dimension  | Trained tokens |
-|:----------------|:------------:|:------------:|:------------------:|
+|:----------------|:------------:|:----------------:|:------------------:|
 | [370M](https://huggingface.co/ridger/MMfreeLM-370M)  | 24  | 1024 | 15B  |
 | [1.3B](https://huggingface.co/ridger/MMfreeLM-1.3B)  | 24 | 2048 | 100B  |
 | [2.7B](https://huggingface.co/ridger/MMfreeLM-2.7B)  | 32  | 2560 | 100B  |
