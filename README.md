@@ -43,7 +43,7 @@ pip install -U git+https://github.com/ridgerchu/matmulfreellm
 
 We provide the implementations of models that are compatible with 🤗 Transformers library. 
 Here's an example of how to initialize a model from the default configs in `matmulfreelm`:
-This is a huggingface-compatible libary that you can use such command to initize the model with huggingface `AutoModel`:
+This is a huggingface-compatible library that you can use such command to initize the model with huggingface `AutoModel`:
 
 
 ```py
