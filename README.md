@@ -2,7 +2,7 @@
 <img src="__assets__/logo.png" width="200px">
 </div>
 <h2 align="center">MatMul-Free LM</h2>
-<h5 align="center"> If you like our project, please give us a star ⭐ on GitHub for the latest update.  </h2>
+<h5 align="center"> If you like our project, please give us a star ⭐ on GitHub for the latest updates.  </h2>
 <h5 align="center"> This repo is adapted from <a href="https://github.com/sustcsonglin/flash-linear-attention">flash-linear-attention</a>. </h2>
 
 <h5 align="center">
@@ -117,7 +117,7 @@ print(tokenizer.batch_decode(outputs, skip_special_tokens=True)[0])
 
 
 # Citation
-If you find this repo useful, please consider citing our works:
+If you use this repo in your work, please cite our preprint:
 ```bib
 @article{zhu2024scalable,
 title={Scalable MatMul-free Language Modeling},
