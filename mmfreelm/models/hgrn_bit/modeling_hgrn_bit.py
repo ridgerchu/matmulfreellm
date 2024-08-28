@@ -19,7 +19,6 @@ from mmfreelm.layers.hgrn_bit import HGRNBitAttention
 from mmfreelm.models.hgrn_bit.configuration_hgrn_bit import HGRNBitConfig
 from mmfreelm.models.utils import RecurrentCache
 from mmfreelm.modules import FusedCrossEntropyLoss, RMSNorm
-from mmfreelm.modules.layernorm import RMSNormLinear
 from mmfreelm.modules.activations import swiglu_linear, swiglu
 #from mmfreelm.ops.bitnet import BitLinear_Fuse as BitLinear
 from mmfreelm.ops.fusedbitnet import FusedBitLinear as BitLinear
@@ -50,9 +49,7 @@ class HGRNBitMLP(nn.Module):
         self.intermediate_size = intermediate_size
 
         self.gate_proj = BitLinear(self.hidden_size, self.intermediate_size * 2, bias=False)
-        #self.gate_proj_bit = RMSNormLinear(self.hidden_size)
         self.down_proj = BitLinear(self.intermediate_size, self.hidden_size, bias=False)
-        #self.gate_proj_bit = RMSNormLinear(self.hidden_size)
         self.act_fn = ACT2FN[hidden_act]
 
     def forward(self, x):
