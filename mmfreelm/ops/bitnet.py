@@ -4,7 +4,7 @@ import torch.nn.functional as F
 import triton
 import triton.language as tl
 from mmfreelm.modules import RMSNorm
-from mmfreelm.modules.layernorm import RMSNormLinear
+from mmfreelm.modules.quant_util import BitLinearBitBLAS
 
 
 def activation_quant(x):
@@ -128,3 +128,25 @@ class BitLinear_wonorm_bmm(nn.Linear):
         # Perform linear operation with quantized values
         y = torch.bmm(x_quant, w_quant)
         return y
+
+class BitLinearBitBLASWithNorm(nn.Module):
+    def __init__(self, in_features, out_features, weight_bits=1, input_bits=8):
+        super(BitLinearBitBLASWithNorm, self).__init__()
+        self.norm = RMSNorm(in_features, eps=1e-8)
+        self.bitlinear = BitLinearBitBLAS(in_features, out_features, weight_bits=weight_bits, input_bits=input_bits)
+
+    def forward(self, x):
+        x_norm = self.norm(x)
+        return self.bitlinear(x_norm)
+
+    @classmethod
+    def from_bit_linear(cls, bitlinear, weight_group=1):
+        module = cls(bitlinear.in_features, bitlinear.out_features, weight_bits=2, input_bits=8)
+        sw, qweight = module.bitlinear.create_bitblas_weights(bitlinear.weight, weight_group)
+        module.bitlinear.register_buffer("qweight", qweight)
+        module.bitlinear.register_buffer("sw", sw)
+        if bitlinear.bias is not None:
+            module.bitlinear.register_buffer("bias", bitlinear.bias)
+        else:
+            module.bitlinear.bias = None
+        return module

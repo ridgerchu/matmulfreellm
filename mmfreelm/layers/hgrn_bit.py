@@ -16,7 +16,7 @@ from mmfreelm.modules.activations import swiglu
 from mmfreelm.ops.hgrn.recurrent_fuse import fused_recurrent_hgrn
 
 #from mmfreelm.ops.bitnet import BitLinear_Fuse as BitLinear
-from mmfreelm.ops.fusedbitnet import FusedBitLinear as BitLinear
+from mmfreelm.ops.bitnet import BitLinear
 
 
 class HGRNBitAttention(nn.Module):

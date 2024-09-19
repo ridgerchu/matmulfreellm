@@ -129,6 +129,7 @@ setup(
         'triton',
         'transformers',
         'einops',
-        'ninja'
+        'ninja',
+        'bitblas'
     ]
 )

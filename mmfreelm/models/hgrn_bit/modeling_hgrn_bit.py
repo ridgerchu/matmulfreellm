@@ -20,8 +20,11 @@ from mmfreelm.models.hgrn_bit.configuration_hgrn_bit import HGRNBitConfig
 from mmfreelm.models.utils import RecurrentCache
 from mmfreelm.modules import FusedCrossEntropyLoss, RMSNorm
 from mmfreelm.modules.activations import swiglu_linear, swiglu
-#from mmfreelm.ops.bitnet import BitLinear_Fuse as BitLinear
-from mmfreelm.ops.fusedbitnet import FusedBitLinear as BitLinear
+from mmfreelm.ops.bitnet import BitLinear, BitLinearBitBLASWithNorm
+from mmfreelm.modules.quant_util import BitLinearBitBLAS
+
+
+#from mmfreelm.ops.fusedbitnet import FusedBitLinear as BitLinear
 
 logger = logging.get_logger(__name__)
 
@@ -407,3 +410,37 @@ class HGRNBitForCausalLM(HGRNBitPreTrainedModel):
             hidden_states=outputs.hidden_states,
             attentions=outputs.attentions,
         )
+
+    def recursive_set(self, name, attr):
+        '''
+            set layers.25.mlp.up_proj to attr
+        '''
+
+        names = name.split('.')
+        obj = self.model
+        for n in names[:-1]:
+            obj = getattr(obj, n)
+        setattr(obj, names[-1], attr)
+
+    def quantize(self):
+        modules = list(self.model.named_modules())
+        for i, (name, module) in enumerate(modules):
+            # 如果是BitLinear层
+            if isinstance(module, BitLinear):
+                print("Quantizing module", name)
+                bitblas_linear = BitLinearBitBLASWithNorm.from_bit_linear(module)
+                print("Replacing module", name, "with a quantized version")
+                self.recursive_set(name, bitblas_linear)
+
+                # 获取下一个模块（如果存在）
+                if i + 1 < len(modules):
+                    next_name, next_module = modules[i + 1]
+                    bitblas_linear.norm = next_module
+                    print("Next module:", next_name)
+                    # 这里你可以对下一个模块进行操作
+
+    def _post_process_weights(self):
+        for name, module in self.model.named_modules():
+            if hasattr(module, "post_process_weights"):
+                print("Post processing weights for module", name)
+                module.post_process_weights()
