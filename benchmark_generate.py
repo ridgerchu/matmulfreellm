@@ -1,6 +1,3 @@
-# Copyright (c) Microsoft Corporation.
-# Licensed under the MIT License.
-
 import torch
 import bitblas
 import mmfreelm
@@ -24,9 +21,6 @@ def generate_text_batch(model, tokenizer, prompts, max_length=100):
     seq_length = input_ids.size(1)
     position_ids = torch.arange(seq_length, dtype=torch.long, device=input_ids.device)
     position_ids = position_ids.unsqueeze(0).expand_as(input_ids)
-    # position_embeddings = model.embed_positions(position_ids)
-    # cos = position_embeddings[:, :, 0::2].cos()
-    # sin = position_embeddings[:, :, 1::2].sin()
 
     generation_config = GenerationConfig(
         max_length=max_length,
@@ -38,7 +32,6 @@ def generate_text_batch(model, tokenizer, prompts, max_length=100):
 
     start_time = time.time()
     output_ids = model.generate(input_ids, generation_config=generation_config)
-    # output_ids = model.generate(input_ids, generation_config=generation_config, cos=cos, sin=sin)
     end_time = time.time()
 
     # Decode the output ids to text
@@ -57,7 +50,6 @@ def generate_text_batch(model, tokenizer, prompts, max_length=100):
 
 
 def profile(model, input_data):
-
     import numpy as np
     model = model.cuda()
     model.eval()
@@ -79,37 +71,41 @@ def profile(model, input_data):
     return np.mean(times)
 
 
-model_path = 'ridger/MMfreeLM-2.7B'
-
-
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--bs', default=16, type=int)
     parser.add_argument('--in_seq_len', default=32, type=int)
     parser.add_argument('--out_seq_len', default=128, type=int)
     parser.add_argument('--bitblas', action='store_true')
+    parser.add_argument('--model_size', choices=['1.3B', '2.7B', '370M'], default='1.3B', help="Choose model size: 1.3B, 2.7B, or 370M")
     args = parser.parse_args()
+
+    # Set model path based on selected model size
+    model_paths = {
+        '1.3B': 'ridger/MMfreeLM-1.3B',
+        '2.7B': 'ridger/MMfreeLM-2.7B',
+        '370M': 'ridger/MMfreeLM-370M'
+    }
+    model_path = model_paths[args.model_size]
+    
     bs = args.bs
     in_seq_len = args.in_seq_len
     out_seq_len = args.out_seq_len
     is_bitblas = args.bitblas
+
     model = AutoModelForCausalLM.from_pretrained(
         model_path,
         use_flash_attention_2=False,
         torch_dtype=torch.float16,
     ).cuda().half()
+
     if is_bitblas:
         with torch.no_grad():
             model.quantize()
 
     tokenizer = AutoTokenizer.from_pretrained(model_path)
-    prompt = ""
-    for _ in range(in_seq_len):
-        prompt += "Hello "
-
-    prompts = []
-    for _ in range(bs):
-        prompts.append(prompt)
+    prompt = " ".join(["Hello"] * in_seq_len)
+    prompts = [prompt] * bs
     max_length = out_seq_len + in_seq_len
     print(generate_text_batch(model, tokenizer, prompts, max_length=max_length))
 
