@@ -114,7 +114,19 @@ outputs = model.generate(input_ids, max_length=32,  do_sample=True, top_p=0.4, t
 print(tokenizer.batch_decode(outputs, skip_special_tokens=True)[0])
 ```
 
+# Running Tests
 
+To run the tests, ensure you have `pytest` installed:
+
+```sh
+pip install pytest
+```
+
+Run the tests using:
+
+```sh
+pytest /workspaces/matmulfreellm/tests
+```
 
 # Citation
 If you use this repo in your work, please cite our preprint:
