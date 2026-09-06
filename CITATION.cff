@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the archived software release and the associated paper."
+title: "MatMul-Free LM"
+type: software
+version: 0.1.0
+date-released: 2026-09-06
+repository-code: "https://github.com/ridgerchu/matmulfreellm"
+license: Apache-2.0
+authors:
+  - family-names: Zhu
+    given-names: Rui-Jie
+    affiliation: "University of California, Santa Cruz"
+  - family-names: Zhang
+    given-names: Yu
+    affiliation: "Soochow University"
+  - family-names: Abreu
+    given-names: Steven
+    affiliation: "University of Groningen"
+  - family-names: Sifferman
+    given-names: Ethan
+    affiliation: "University of California, Santa Cruz"
+  - family-names: Sheaves
+    given-names: Tyler
+    affiliation: "University of California, Santa Cruz"
+  - family-names: Wang
+    given-names: Yiqiao
+    affiliation: LuxiTech
+  - family-names: Richmond
+    given-names: Dustin
+    affiliation: "University of California, Santa Cruz"
+  - family-names: Shrestha
+    given-names: "Sumit Bam"
+    affiliation: "Intel Labs"
+  - family-names: Zhou
+    given-names: Peng
+    affiliation: "University of California, Santa Cruz; LuxiTech"
+  - family-names: Eshraghian
+    given-names: "Jason K."
+    affiliation: "University of California, Santa Cruz"

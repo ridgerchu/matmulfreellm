@@ -7,7 +7,7 @@
 
 <h5 align="center">
 
-[![hf_model](https://img.shields.io/badge/🤗-Models-blue.svg)](https://huggingface.co/collections/ridger/matmulfree-lm-665f4d2b4e4648756e0dd13c) [![arXiv](https://img.shields.io/badge/Arxiv-2406.02528-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2406.02528) 
+[![hf_model](https://img.shields.io/badge/🤗-Models-blue.svg)](https://huggingface.co/collections/ridger/matmulfree-lm-665f4d2b4e4648756e0dd13c) [![arXiv](https://img.shields.io/badge/Arxiv-2406.02528-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2406.02528) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 # Introduction
 <div align=center>
 <img src="__assets__/main.png">
@@ -116,13 +116,25 @@ print(tokenizer.batch_decode(outputs, skip_special_tokens=True)[0])
 
 
 
-# Citation
-If you use this repo in your work, please cite our preprint:
+## Reproducible release
+
+Version `v0.1.0` is the archival software release associated with the Nature Computational Science manuscript. Its runtime code is based on commit [`f24cfe5`](https://github.com/ridgerchu/matmulfreellm/commit/f24cfe58bb76291140d8df603db62dcb5f9cc10a), with citation, version, and license metadata added for the release.
+
+## Citation
+
+If you use this software, please cite both the archived software release (see [`CITATION.cff`](CITATION.cff)) and the associated paper:
+
 ```bib
 @article{zhu2024scalable,
-title={Scalable MatMul-free Language Modeling},
-author={Zhu, Rui-Jie and Zhang, Yu and Sifferman, Ethan and Sheaves, Tyler and Wang, Yiqiao and Richmond, Dustin and Zhou, Peng and Eshraghian, Jason K},
-journal={arXiv preprint arXiv:2406.02528},
-year={2024}
+  title={Scalable MatMul-free Language Modeling},
+  author={Zhu, Rui-Jie and Zhang, Yu and Abreu, Steven and Sifferman, Ethan and Sheaves, Tyler and Wang, Yiqiao and Richmond, Dustin and Shrestha, Sumit Bam and Zhou, Peng and Eshraghian, Jason K.},
+  journal={arXiv preprint arXiv:2406.02528},
+  year={2024},
+  doi={10.48550/arXiv.2406.02528},
+  url={https://arxiv.org/abs/2406.02528}
 }
 ```
+
+## License
+
+The software is released under the [Apache License 2.0](LICENSE).

@@ -117,10 +117,10 @@ setup(
     author_email='',
     url='',
     packages=find_packages(),
-    license='MIT',
+    license='Apache-2.0',
     classifiers=[
         'Programming Language :: Python :: 3',
-        'License :: OSI Approved :: MIT License',
+        'License :: OSI Approved :: Apache Software License',
         'Operating System :: OS Independent',
         'Topic :: Scientific/Engineering :: Artificial Intelligence'
     ],
