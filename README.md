@@ -7,7 +7,7 @@
 
 <h5 align="center">
 
-[![hf_model](https://img.shields.io/badge/🤗-Models-blue.svg)](https://huggingface.co/collections/ridger/matmulfree-lm-665f4d2b4e4648756e0dd13c) [![arXiv](https://img.shields.io/badge/Arxiv-2406.02528-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2406.02528) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![hf_model](https://img.shields.io/badge/🤗-Models-blue.svg)](https://huggingface.co/collections/ridger/matmulfree-lm-665f4d2b4e4648756e0dd13c) [![arXiv](https://img.shields.io/badge/Arxiv-2406.02528-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2406.02528) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22501850.svg)](https://doi.org/10.5281/zenodo.22501850) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 # Introduction
 <div align=center>
 <img src="__assets__/main.png">
@@ -122,7 +122,23 @@ Version `v0.1.0` is the archival software release associated with the Nature Com
 
 ## Citation
 
-If you use this software, please cite both the archived software release (see [`CITATION.cff`](CITATION.cff)) and the associated paper:
+If you use this software, please cite both the archived software release (see [`CITATION.cff`](CITATION.cff)) and the associated paper.
+
+Software release:
+
+```bib
+@software{zhu2026matmulfree,
+  title={MatMul-Free LM: Code for Scalable MatMul-free Language Modeling on Neuromorphic Hardware},
+  author={Zhu, Rui-Jie and Zhang, Yu and Abreu, Steven and Sifferman, Ethan and Sheaves, Tyler and Wang, Yiqiao and Richmond, Dustin and Shrestha, Sumit Bam and Zhou, Peng and Eshraghian, Jason K.},
+  year={2026},
+  version={0.1.0},
+  publisher={Zenodo},
+  doi={10.5281/zenodo.22501850},
+  url={https://doi.org/10.5281/zenodo.22501850}
+}
+```
+
+Associated paper:
 
 ```bib
 @article{zhu2024scalable,
